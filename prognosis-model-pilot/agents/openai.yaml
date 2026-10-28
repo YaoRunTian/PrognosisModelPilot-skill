@@ -1,0 +1,4 @@
+interface:
+  display_name: "PrognosisModelPilot"
+  short_description: "按参考项目交付方案、R分析、完整结果图表和Word报告，整合单细胞与转录组构建预后模型"
+  default_prompt: "使用 $prognosis-model-pilot 完成我的肿瘤预后研究，先写参考样式的方案与流程图，再生成R脚本并分析，按已学习项目交付结果表图、模型工件和正式Word/PDF报告。"

@@ -1,0 +1,302 @@
+# 新项目适配配置示例。null 表示待从真实材料确定，不能直接运行。
+project_name: null
+project_root: null
+cancer_type: null
+# 完整构建默认full_project；单项请求可选write_proposal / generate_project / write_report。
+task: "full_project"
+endpoint: null
+time_unit: null
+entry_stage: null
+
+standards:
+  profile: "department-v5.0"
+  source_sha256: "fcf57471710641a35a0ba1d7d3aeebb465ee0f991d94ce8527d9012458d11b4e"
+  review_index: null
+  deviation_log: null
+  confirmed_exceptions: []
+
+reference:
+  project: null
+  source_version: null
+  selected_scripts: []
+  source_root: null
+  adaptation_mode: null
+
+delivery:
+  profile: "reference_project_compatible"
+  reference_project: null
+  reference_snapshot: null
+  output_mapping: null
+  manifest: "deliverables.tsv"
+  # 编号与模块数量按参考及本项目依赖确定，不强制固定20个模块。
+  layout: "root_numbered_scripts_and_stage_result_directories"
+  object_directory: "RData"
+  figures:
+    raster_formats: ["png"]
+    vector_or_print_formats: ["pdf"]
+    raster_dpi: 300
+    style: "inherit_selected_reference"
+    embed_actual_figures_in_report: true
+    keep_source_tables: true
+  workflow:
+    formats: ["pptx", "png"]
+    native_editable: true
+  documents:
+    style: "inherit_selected_proposal_and_report"
+    format_profile: null
+    retain_cover_and_section_structure: true
+    render_and_review_all_pages: true
+  completion_requires_file_and_visual_review: true
+
+bulk:
+  acquisition:
+    provider: "TCGAbiolinks_GDC"
+    project: null
+    data_category: "Transcriptome Profiling"
+    data_type: "Gene Expression Quantification"
+    workflow_type: "STAR - Counts"
+    access: "open"
+    download_method: "api"
+    files_per_chunk: 20
+    clinical_type: "clinical"
+    directory: null
+    reuse_local_data: true
+  training_expression: null
+  training_counts: null
+  training_clinical: null
+  expression_orientation: "genes_by_samples"
+  expression_scale: null
+  sample_id_column: null
+  time_column: null
+  event_column: null
+  event_mapping: null
+  patient_id_column: null
+  # 每个验证队列单独声明expression/clinical/scale/time_unit/字段映射和角色。
+  validation_cohorts: []
+
+single_cell:
+  enabled: true
+  counts_or_object: null
+  sample_metadata: null
+  patient_id_column: null
+  # 可选单基因入口；也可从已经有依据的关键细胞直接开始。
+  anchor_gene: null
+  target_cell_types: []
+  key_cell_selection_basis: null
+  feature_route: null
+  phenotype_definition: null
+  annotation_marker_sources: []
+  marker_cluster_table: null
+  preannotation_marker_dotplot: null
+  qc_thresholds: null
+  qc_references: []
+
+features:
+  # 可从已存在且有来源的候选基因表开始，无需重跑上游单细胞。
+  existing_candidates: null
+  gene_id_namespace: null
+  mapping_version: null
+  gene_sets:
+    set1_key_cells:
+      path: null
+      route: null
+      selection_parameters: null
+    set2_bulk:
+      path: null
+      route: "differential_expression"
+      selection_parameters: null
+    set3_function_or_pathway:
+      enabled: false
+      path: null
+      source: null
+      version: null
+      pathway_ids: []
+  # G3未启用：G1∩G2；G3启用：G1∩G2∩G3。空交集须诊断，不自动放宽。
+  candidate_combination: "intersection_of_enabled_sets"
+  differential_contrast: null
+  # 部门默认；记录实际比较方向、log2FC尺度及已确认例外。
+  differential_p_type: "padj"
+  fdr_threshold: 0.05
+  effect_size_threshold: 0.5
+  # 只检查本阶段完整DEG结果，不对三集合交集或最终模型套用100基因要求。
+  differential_min_gene_count_review: 100
+
+model:
+  family: "cox"
+  selection_strategy: "univariate_cox_then_lasso_then_multivariable_cox"
+  univariate_p_threshold: 0.05
+  univariate_p_type: "raw"
+  confidence_level: 0.95
+  ph_checks: ["univariate", "final_model", "global"]
+  ph_review_p_threshold: 0.05
+  max_prognostic_genes_target: 8
+  multivariable_retention_rule: null
+  coefficient_source: "final_multivariable_cox"
+  split_manifest: null
+  seed: null
+  folds: null
+  preferred_cv_folds: [3, 5, 10]
+  min_patients_per_fold_review: 3
+  alpha: 1
+  lambda_rule: null
+  preprocessing: null
+  cutoff_rule: null
+  evaluation_times: []
+  # 与time_unit换算并核对随访后，才能填入实际evaluation_times。
+  preferred_evaluation_times_years: [1, 3, 5]
+  auc_review_target: 0.6
+
+validation:
+  external_required_for_complete_project: true
+  # 这些癌种仅可申请例外，不表示已获豁免。
+  internal_only_exception_eligible_cancers: ["CESC", "THCA", "UCEC"]
+  internal_only_exception_confirmation: null
+
+nomogram:
+  enabled: true
+  predictor_form: "risk_score_plus_clinical_covariates"
+  clinical_covariates: []
+  clinical_encoding: null
+  prediction_times: []
+  min_clinical_covariates: 1
+  independent_factor_p_threshold: 0.05
+  auc_review_target: 0.6
+
+# 条件模块的默认值；只有本次任务选中时才运行。
+module_defaults:
+  bulk_wgcna:
+    min_independent_samples: 15
+    scale_free_r2_min: 0.8
+    mean_connectivity_upper_exclusive: 200
+    module_correlation_method: "pearson"
+    module_abs_r_min_exclusive: 0.3
+    module_p_max_exclusive: 0.05
+    gene_significance_min_exclusive: 0.2
+    module_membership_min_exclusive: 0.8
+  bulk_signature_scoring:
+    preferred_method: "ssGSEA"
+    min_mapped_genes: 10
+    # 方向集合原文另要求>10且<200；不套用于单细胞UCell/AUCell。
+    directional_set_size_range_exclusive: [10, 200]
+  ppi:
+    min_genes: 10
+    max_genes: 2000
+    purpose: null
+    string_confidence: null
+    preserve_full_rankings: true
+  ora:
+    min_input_genes: 10
+    adjusted_p_max_exclusive: 0.05
+  gsea:
+    preferred_collection: "KEGG"
+    abs_nes_min_exclusive: 1
+    adjusted_p_max_exclusive: 0.05
+    seed: null
+  gsva_comparison:
+    method: "limma"
+    abs_t_min_exclusive: 1
+    adjusted_p_max_exclusive: 0.05
+  correlation:
+    default_method: "spearman"
+    abs_r_min: 0.3
+
+# 完整项目默认规划这些模块。enabled不代表输入齐全、已获执行授权或已运行。
+# 受阻模块须记录具体缺项；用户指定简化任务时按其范围裁剪。
+downstream:
+  bulk:
+    analysis_objects: ["prognostic_genes", "continuous_risk_score", "risk_groups"]
+    immune_infiltration:
+      enabled: true
+      method: null
+      reference_resource: null
+    immunotherapy:
+      enabled: true
+      method: null
+      # 区分计算代理分数与真实治疗队列评价。
+      evidence_mode: null
+      treated_cohort: null
+      clinical_response_or_outcome: null
+    drug_sensitivity:
+      enabled: true
+      method: null
+      training_resource: null
+      predicted_quantity_and_unit: null
+    tmb:
+      enabled: true
+      mutation_file: null
+      tested_patient_manifest: null
+      mutation_filter: null
+      burden_definition: null
+      territory_mb: null
+  single_cell:
+    target: "key_cells"
+    pseudotime:
+      enabled: true
+      method: null
+      root_selection_basis: null
+    communication:
+      enabled: true
+      method: null
+      context_cell_types: []
+      ligand_receptor_resource: null
+      communication_p_max_exclusive: 0.05
+    metabolism:
+      enabled: true
+      method: null
+      gene_set_resource: null
+
+execution:
+  output_root: null
+  requested_stages: []
+  optional_modules: []
+  # 声明交付物是否满足运行条件，与是否获准执行分别记录。
+  readiness: "unresolved"
+  module_status_manifest: null
+
+proposal:
+  # null按task及本次范围解析，full_project中启用；单写方案不自动运行分析。
+  enabled: null
+  language: "zh-CN"
+  output_formats: ["docx", "pdf"]
+  title: null
+  project_id: null
+  audience: null
+  reference_proposals: []
+  reference_format_sha256: null
+  style_profile: null
+  workflow_files: []
+  deliverables_manifest: null
+  hypothesis: null
+  aims: []
+  scientific_questions: []
+  novelty_evidence: null
+  dataset_registry: null
+  module_plan: null
+  feasibility_status: "unassessed"
+  # 与可行性分别记录；不能根据服务器目录有无报告推断执行结果。
+  execution_status: "not_verified"
+  pilot_results_root: null
+  pilot_evidence_index: null
+  wet_lab_responsibility: null
+  decision_and_revision_log: null
+  reference_verification_index: null
+  output_directory: null
+
+report:
+  # null按task及本次范围解析，full_project中启用；单纯代码任务不写虚构结果报告。
+  enabled: null
+  language: "zh-CN"
+  output_formats: ["docx", "pdf"]
+  title: null
+  project_id: null
+  reference_report: null
+  reference_format_sha256: null
+  style_profile: null
+  results_root: null
+  evidence_index: null
+  figure_index: null
+  deliverables_manifest: null
+  output_directory: null
+  analysis_version: null
+  standards_review_index: null
+  standards_deviations: null
