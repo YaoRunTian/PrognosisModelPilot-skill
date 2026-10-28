@@ -1,4 +1,4 @@
-# PrognosisModelPilot
+# PrognosisModelPilot-skill
 
 面向肿瘤预后研究的 Codex skill，整合单细胞与转录组数据，支持项目方案、R 分析项目、结果图表和实验报告。
 
