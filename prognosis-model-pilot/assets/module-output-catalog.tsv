@@ -1,32 +1,32 @@
 module	when_selected	table_outputs	figure_outputs	object_outputs	reference_basis	completion_notes
 proposal	write_proposal或full_project	数据角色表;模块计划;交付计划	本项目技术路线PNG及原生可编辑PPTX	正式方案DOCX和PDF	proposal-map的25份方案	嵌入流程图并继承参考版式;预分析另标证据
 data_preparation	本次需要获取或整理输入	样本患者映射;纳排;临床与终点;基因注释;缺失与输入检查	纳排图或适用的输入分布图	counts/建模表达/临床与元数据Rds;获取记录	code-map及data-contracts	不把下载成功等同最终分析队列完成
-sc_qc	单细胞入口运行	逐样本质控前后统计;阈值与样本信息	质控前后小提琴/散点;批次及患者分布	保留患者与批次的单细胞对象	report-map 05/12/16/19/23/24	患者数和细胞数分别统计
-sc_annotation	单细胞注释运行	marker全表;细胞类型-marker-cluster映射;细胞组成	cluster/细胞类型/样本UMAP或参考降维图;marker气泡/热图	注释后对象及metadata	code-map 12/16;report-map 16/24	标清重注释和实际依据
-anchor_gene	启用关注单基因	各细胞/患者表达及表达比例统计	FeaturePlot/小提琴/气泡图等参考图型	表达定位与关键细胞选择记录	report-map 14/19/23/24	不默认最高表达即关键细胞
-key_cells	关键细胞已选择	关键细胞依据;状态或分组差异统计	关键细胞定位/亚群图;方向评分或关联图	关键细胞对象及选择记录	core-workflow;report-map 16/19/23/24	来源可与G1模块共享但明确对象
-g1	关键细胞提取基因	G1完整基因及筛选依据;基因映射	所选路线的marker/模块/响应基因图	G1列表与相关对象	core-workflow;code-map 08/16/19/23/24	按实际选择方法绘图;不强制叠加所有算法
-bulk_de	bulk差异筛选	全量差异表;上下调与DEG列表;模型设计和比较	火山图;表达热图	差异结果对象	code-map 02/16/19/24	保留效应量与p/padj;方向和背景一致
+sc_qc	单细胞入口运行	逐样本质控前后统计;阈值与样本信息	质控前后小提琴/散点;批次及患者分布	保留患者与批次的单细胞对象	report-map project010/project017/project001/project002/project004/project005	患者数和细胞数分别统计
+sc_annotation	单细胞注释运行	marker全表;细胞类型-marker-cluster映射;细胞组成	cluster/细胞类型/样本UMAP或参考降维图;marker气泡/热图	注释后对象及metadata	code-map project017/project001;report-map project001/project005	标清重注释和实际依据
+anchor_gene	启用关注单基因	各细胞/患者表达及表达比例统计	FeaturePlot/小提琴/气泡图等参考图型	表达定位与关键细胞选择记录	report-map project019/project002/project004/project005	不默认最高表达即关键细胞
+key_cells	关键细胞已选择	关键细胞依据;状态或分组差异统计	关键细胞定位/亚群图;方向评分或关联图	关键细胞对象及选择记录	core-workflow;report-map project001/project002/project004/project005	来源可与G1模块共享但明确对象
+g1	关键细胞提取基因	G1完整基因及筛选依据;基因映射	所选路线的marker/模块/响应基因图	G1列表与相关对象	core-workflow;code-map project013/project001/project002/project004/project005	按实际选择方法绘图;不强制叠加所有算法
+bulk_de	bulk差异筛选	全量差异表;上下调与DEG列表;模型设计和比较	火山图;表达热图	差异结果对象	code-map project007/project001/project002/project005	保留效应量与p/padj;方向和背景一致
 g3	启用功能或通路约束	来源基因表;版本及通路ID;映射记录	在候选交集图中标G3;不强制无意义单独统计图	冻结G3列表及来源	core-workflow;proposal-map	不复制历史交集数量
-candidates	生成候选基因	G1/G2/可选G3与逐基因集合归属;候选列表	Venn或UpSet及实际计数	候选基因对象	code-map 02/16/19/23/24	空交集记录归零位置不改并集凑结果
-ora	选用GO/KEGG富集	富集全表;输入和背景;数据库版本	参考的气泡/柱图;必要中英文通路表	富集结果对象	report-map 02/03/12/16	展示规则预设;未显著结果保留
+candidates	生成候选基因	G1/G2/可选G3与逐基因集合归属;候选列表	Venn或UpSet及实际计数	候选基因对象	code-map project007/project001/project002/project004/project005	空交集记录归零位置不改并集凑结果
+ora	选用GO/KEGG富集	富集全表;输入和背景;数据库版本	参考的气泡/柱图;必要中英文通路表	富集结果对象	report-map project007/project008/project017/project001	展示规则预设;未显著结果保留
 ppi	选用PPI	节点边表;置信度与可选排名全表	PPI网络及实际选用的排名图	工具会话或可编辑网络文件	department-standards-v5;report-map	网络展示与额外筛选分别记录
-univariate_cox	候选进入预后筛选	基因HR/95%CI/p;PH与样本事件信息	单因素Cox森林图或参考对应图	单因素结果对象	report-map 02/16/18/22	真实终点及输入尺度
-lasso_cox	默认三阶段建模	lambda及CV结果;非零基因与系数;折分和参数	系数路径图;交叉验证曲线	cv.glmnet和LASSO拟合对象	code-map 02/16/19/22/23/24	LASSO筛选系数不混为最终多因素系数
-multivariable_cox	默认三阶段建模	最终基因系数/HR/CI/p;PH;收敛与保留规则	多因素森林图;适用PH诊断图	最终多因素Cox及训练预处理对象	core-workflow;code-map 18/22	新对象是正确评分所需补充;历史路线如实标差异
-risk_model	模型可用	患者连续评分/分组/结局;阈值;公式与转换	风险分布;生存状态;KM;模型基因表达热图	评分与冻结分组规则	report-map 02/16/22/24	评价marker用连续分数;生存事件不取预测标签
-internal_evaluation	开发及内部评价	C-index/时间依赖AUC/校准等;时间点与不确定性	时间依赖ROC;校准;适用重采样图	评价与重采样记录	core-workflow;report-map 02/16/24	训练/留出/合并分别命名
-external_validation	完整项目所需或已有确认例外	逐外部队列评分/分组/结局/评价及覆盖表	逐队列KM/时间依赖ROC/适用校准与风险图	冻结模型预测及评价记录	report-map 02/16/22/23	LUAD需独立外部验证;内部合并不替代
-clinical_nomogram	默认完整模型设计	临床编码/缺失;评分及临床Cox;预测和评价	独立预后森林图;临床列线图;校准;适用DCA/ROC	临床联合模型/基线生存/编码对象	report-map 02/18/22/24	评分加至少一项适用临床变量
-immune_infiltration	默认下游且输入可用	样本免疫估计;基因评分关联;组间统计与校正	免疫组成/热图;风险组比较;相关性图	估计对象与方法资源记录	report-map 04/06/16/22/24	图型按实际算法及问题选择
-immunotherapy	默认下游且输入可用	检查点/代理分数比较;真实治疗队列评价如有	检查点或TIDE/IPS比较;真实治疗结局图如有	计算/治疗队列输入及结果	report-map 04/12/22/24	代理预测与真实治疗证据分开
-drug_sensitivity	默认下游且输入可用	预测药敏完整表;药物标识/尺度;比较校正	组间药敏比较;基因或评分关联图	预测对象及资源版本	report-map 04/09/16/22/24	计算预测不当作实测药敏
-tmb	默认下游且突变与受检信息可用	受检清单;过滤后突变/负荷;分母和比较	突变瀑布图;TMB风险组比较/关联;适用联合生存图	突变及负荷结果对象	report-map 04/06/18/24	未受检不计零;只有计数不冒称每Mb
-pseudotime	默认关键细胞下游且条件可用	细胞状态/拟时序;根节点依据;动态基因统计	状态/拟时序轨迹;基因或通路动态图/热图	轨迹对象与细胞metadata	report-map 05/16/19/23/24	轨迹不是实测时间或谱系证明
-communication	默认关键细胞下游且上下文细胞可用	配体受体/通路/发送接收统计;组间差异	数量或强度网络;气泡/弦图或参考热图	通讯模型及资源版本	code-map 12/16;report-map 05/19/24	保留所需其他细胞;导出基因与复合体定义分开
-metabolism	默认关键细胞下游且输入适用	细胞或患者代谢分数;组间比较与集合版本	代谢活性热图/气泡/小提琴及适用降维图	代谢评分与汇总对象	report-map 19/23/24	表达推断不等同实测通量
-scissor	方案选用	表型编码;细胞标签与关联统计	表型关联细胞定位;分组分布	Scissor结果与带标签细胞对象	code-map 16/20/21	正负标签按真实编码解释
-hdwgcna	方案选用	模块/成员/连接度;模块选择与G1表	软阈值诊断;树状/模块/关联/网络图	网络及模块对象	code-map 11/16/19/20	按实际方法条件;不硬编码旧模块
-virtual_knockout	方案选用	目标基因/细胞;响应基因全表;计算扰动参数	扰动响应排序/分布及所选功能图	网络扰动对象	code-map 19/23/24	上游G1与下游解释分别定位;不是湿实验
-report	write_report或full_project	结果证据;图表索引;软件版本;调整与质检	正文实际嵌入本次主结果;补充图表有定位	正式报告DOCX与PDF	report-map的19组主报告	按document-format继承版式;不能只有Markdown
+univariate_cox	候选进入预后筛选	基因HR/95%CI/p;PH与样本事件信息	单因素Cox森林图或参考对应图	单因素结果对象	report-map project007/project001/project022/project003	真实终点及输入尺度
+lasso_cox	默认三阶段建模	lambda及CV结果;非零基因与系数;折分和参数	系数路径图;交叉验证曲线	cv.glmnet和LASSO拟合对象	code-map project007/project001/project002/project003/project004/project005	LASSO筛选系数不混为最终多因素系数
+multivariable_cox	默认三阶段建模	最终基因系数/HR/CI/p;PH;收敛与保留规则	多因素森林图;适用PH诊断图	最终多因素Cox及训练预处理对象	core-workflow;code-map project022/project003	新对象是正确评分所需补充;历史路线如实标差异
+risk_model	模型可用	患者连续评分/分组/结局;阈值;公式与转换	风险分布;生存状态;KM;模型基因表达热图	评分与冻结分组规则	report-map project007/project001/project003/project005	评价marker用连续分数;生存事件不取预测标签
+internal_evaluation	开发及内部评价	C-index/时间依赖AUC/校准等;时间点与不确定性	时间依赖ROC;校准;适用重采样图	评价与重采样记录	core-workflow;report-map project007/project001/project005	训练/留出/合并分别命名
+external_validation	完整项目所需或已有确认例外	逐外部队列评分/分组/结局/评价及覆盖表	逐队列KM/时间依赖ROC/适用校准与风险图	冻结模型预测及评价记录	report-map project007/project001/project003/project004	LUAD需独立外部验证;内部合并不替代
+clinical_nomogram	默认完整模型设计	临床编码/缺失;评分及临床Cox;预测和评价	独立预后森林图;临床列线图;校准;适用DCA/ROC	临床联合模型/基线生存/编码对象	report-map project007/project022/project003/project005	评分加至少一项适用临床变量
+immune_infiltration	默认下游且输入可用	样本免疫估计;基因评分关联;组间统计与校正	免疫组成/热图;风险组比较;相关性图	估计对象与方法资源记录	report-map project009/project011/project001/project003/project005	图型按实际算法及问题选择
+immunotherapy	默认下游且输入可用	检查点/代理分数比较;真实治疗队列评价如有	检查点或TIDE/IPS比较;真实治疗结局图如有	计算/治疗队列输入及结果	report-map project009/project017/project003/project005	代理预测与真实治疗证据分开
+drug_sensitivity	默认下游且输入可用	预测药敏完整表;药物标识/尺度;比较校正	组间药敏比较;基因或评分关联图	预测对象及资源版本	report-map project009/project014/project001/project003/project005	计算预测不当作实测药敏
+tmb	默认下游且突变与受检信息可用	受检清单;过滤后突变/负荷;分母和比较	突变瀑布图;TMB风险组比较/关联;适用联合生存图	突变及负荷结果对象	report-map project009/project011/project022/project005	未受检不计零;只有计数不冒称每Mb
+pseudotime	默认关键细胞下游且条件可用	细胞状态/拟时序;根节点依据;动态基因统计	状态/拟时序轨迹;基因或通路动态图/热图	轨迹对象与细胞metadata	report-map project010/project001/project002/project004/project005	轨迹不是实测时间或谱系证明
+communication	默认关键细胞下游且上下文细胞可用	配体受体/通路/发送接收统计;组间差异	数量或强度网络;气泡/弦图或参考热图	通讯模型及资源版本	code-map project017/project001;report-map project010/project002/project005	保留所需其他细胞;导出基因与复合体定义分开
+metabolism	默认关键细胞下游且输入适用	细胞或患者代谢分数;组间比较与集合版本	代谢活性热图/气泡/小提琴及适用降维图	代谢评分与汇总对象	report-map project002/project004/project005	表达推断不等同实测通量
+scissor	方案选用	表型编码;细胞标签与关联统计	表型关联细胞定位;分组分布	Scissor结果与带标签细胞对象	code-map project001/project023/project024	正负标签按真实编码解释
+hdwgcna	方案选用	模块/成员/连接度;模块选择与G1表	软阈值诊断;树状/模块/关联/网络图	网络及模块对象	code-map project016/project001/project002/project023	按实际方法条件;不硬编码旧模块
+virtual_knockout	方案选用	目标基因/细胞;响应基因全表;计算扰动参数	扰动响应排序/分布及所选功能图	网络扰动对象	code-map project002/project004/project005	上游G1与下游解释分别定位;不是湿实验
+report	write_report或full_project	结果证据;图表索引;软件版本;调整与质检	正文实际嵌入本次主结果;补充图表有定位	正式报告DOCX与PDF	report-map的project002组主报告	按document-format继承版式;不能只有Markdown
 archive	本次交付	逐文件清单;来源/修改;参数和运行记录	按报告定位独立图文件	代码及配置归档;模型对象和大文件位置索引	code-map及report-map	归档与散文件一致;不复制无关原始数据

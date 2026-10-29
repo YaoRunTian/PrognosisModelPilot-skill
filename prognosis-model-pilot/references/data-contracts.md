@@ -15,7 +15,7 @@
 | 建模 | `06.lassogeneslist.txt`、`07.lassoresult.txt`、`*_model.RData` 等 | 分支可能最终用多变量 Cox，而非 LASSO 系数；查看实际评分脚本 |
 | 评价 | `04.risk_table.txt` 等 | 每行患者/样本 ID、真实时间与事件、连续分数、风险组及所属队列 |
 
-以 `02_project_0325` 为例，`r.03_model.R:8–21` 读候选、FPKM、分组和生存后合并；`r.05_testdata.R:35–37` 按模型基因提取 GEO 表达；`r.06_testmodel.R:7–17` 再读模型工作区和验证表。适配必须追踪这一整段链路。
+以 `project007` 为例，`r.03_model.R:8–21` 读候选、FPKM、分组和生存后合并；`r.05_testdata.R:35–37` 按模型基因提取 GEO 表达；`r.06_testmodel.R:7–17` 再读模型工作区和验证表。适配必须追踪这一整段链路。
 
 ## 输入规范
 

@@ -2,7 +2,7 @@
 name: prognosis-model-pilot
 description: 为单细胞与转录组肿瘤预后研究撰写或修订项目方案、适配R分析项目，并依据真实结果撰写生信报告；默认整合关键细胞、bulk及可选通路基因集，经单因素Cox、LASSO、多因素Cox构建评分、临床列线图及下游分析。
 metadata:
-  version: "0.9.0"
+  version: "0.9.1"
   maturity: "source-informed-draft"
 ---
 

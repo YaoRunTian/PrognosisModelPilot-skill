@@ -12,7 +12,7 @@
 
 对应是**文件用途、可读性、信息完整度和形式基本一致**，不是复制旧患者数据、固定结果数值或错误实现。方法修正后可新增必要产物；字段或格式有变化时写清旧接口、新接口、修改原因和受影响下游。
 
-已读源码中的具体例子：16项目的`05_DEG/01.DEGsList.txt`、`06_venn/01.hubgenes.txt`、`04_hdWGCNA/06.hub_module_gene_df.xlsx`，以及`RData/R.06_scRNA_done.Rds`、`RData/pbmc_all_with_subcelltype.Rds`，说明其阶段列表、表格和对象的交接习惯。16的`04.risk_table.txt`应按对应训练/验证结果目录分别保存。它们是来源IO记录，不证明本轮重新检查了远端文件。`R.07_scRNA_Scissor.RData`虽叫RData却由saveRDS写出，新项目优先用正确的`.Rds`并记录兼容映射，不延续扩展名歧义。新的最终多因素Cox、训练预处理和临床联合模型也必须保存，不能因旧项目没有显式对象而省略。
+已读源码中的具体例子：project001项目的`05_DEG/01.DEGsList.txt`、`06_venn/01.hubgenes.txt`、`04_hdWGCNA/06.hub_module_gene_df.xlsx`，以及`RData/R.06_scRNA_done.Rds`、`RData/pbmc_all_with_subcelltype.Rds`，说明其阶段列表、表格和对象的交接习惯。project001的`04.risk_table.txt`应按对应训练/验证结果目录分别保存。它们是来源IO记录，不证明本轮重新检查了远端文件。`R.07_scRNA_Scissor.RData`虽叫RData却由saveRDS写出，新项目优先用正确的`.Rds`并记录兼容映射，不延续扩展名歧义。新的最终多因素Cox、训练预处理和临床联合模型也必须保存，不能因旧项目没有显式对象而省略。
 
 ## 按请求范围交付
 
